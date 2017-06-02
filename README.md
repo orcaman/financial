@@ -1,4 +1,4 @@
-# financial
+# financial [![CircleCI](https://circleci.com/gh/orcaman/financial.svg?style=svg)](https://circleci.com/gh/orcaman/financial)
 package `financial` features common financial functions, and is intended to be a golang version of [numpy's financial functions](https://docs.scipy.org/doc/numpy/reference/routines.financial.html).
 
 ## Supported Functions:
