@@ -6,16 +6,48 @@ import (
 	"testing"
 )
 
+var npvTestCases = []struct {
+	ok     bool
+	rate   float64
+	values []float64
+	want   float64
+}{
+	{
+		ok:     false,
+		rate:   0.281,
+		values: []float64{-100, 39, 59, 55, 20},
+		want:   -0.00847859163845488,
+	},
+}
+
 func TestNPV(t *testing.T) {
-	npv, err := NPV(0.281, []float64{-100, 39, 59, 55, 20})
-	if err != nil {
-		t.Fatal(err.Error())
+	for _, tt := range npvTestCases {
+		got, err := NPV(tt.rate, tt.values)
+
+		if !tt.ok && err == nil {
+			t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
+				tt.rate,
+				tt.values,
+				got,
+				err,
+				-1,
+				"<error>",
+			)
+			continue
+		}
+
+		if got != tt.want {
+			t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
+				tt.rate,
+				tt.values,
+				got,
+				err,
+				tt.want,
+				nil,
+			)
+		}
 	}
-	s := fmt.Sprintf("%.5f", npv)
-	log.Printf("npv: %s", s)
-	if s != "-0.00848" {
-		t.Fail()
-	}
+
 }
 
 func TestIRR(t *testing.T) {
