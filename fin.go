@@ -12,7 +12,7 @@ const irrInitialGuess = 0
 // NPV returns the NPV (Net Present Value) of a cash flow series.
 func NPV(rate float64, values []float64) (float64, error) {
 	if len(values) < 2 {
-		return -1, errors.New("values must include the initial investment (usually negative number) and period cash flows")
+		return 0, errors.New("values must include the initial investment (usually negative number) and period cash flows")
 	}
 	npv := values[0]
 	values = values[1:]
