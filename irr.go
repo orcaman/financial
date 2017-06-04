@@ -5,14 +5,16 @@ import (
 	"math"
 )
 
-const irrMaxInterations = 20
-const irrAccuracy = 1E-7
-const irrInitialGuess = 0
+const (
+	irrMaxInterations = 20
+	irrAccuracy       = 1E-7
+	irrInitialGuess   = 0
+)
 
 // IRR return the Internal Rate of Return (IRR).
 func IRR(values []float64) (float64, error) {
 	if len(values) == 0 {
-		return -1, errors.New("values must include the initial investment (usually negative number) and period cash flows")
+		return 0, errors.New("values must include the initial investment (usually negative number) and period cash flows")
 	}
 	x0 := float64(irrInitialGuess)
 	var x1 float64
@@ -31,5 +33,5 @@ func IRR(values []float64) (float64, error) {
 		}
 		x0 = x1
 	}
-	return -1, errors.New("could not find irr for the provided values")
+	return 0, errors.New("could not find irr for the provided values")
 }
