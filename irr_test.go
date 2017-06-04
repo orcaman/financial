@@ -52,3 +52,17 @@ func TestIRR(t *testing.T) {
 		}
 	}
 }
+
+var irrBenchResult float64
+
+func BenchmarkIRR(b *testing.B) {
+	var r float64
+
+	values := []float64{-100, 39, 59, 55, 20}
+
+	for n := 0; n < b.N; n++ {
+		r, _ = IRR(values)
+	}
+
+	irrBenchResult = r
+}
