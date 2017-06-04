@@ -11,7 +11,7 @@ const (
 	irrInitialGuess   = 0
 )
 
-// IRR return the Internal Rate of Return (IRR).
+// IRR returns the Internal Rate of Return (IRR).
 func IRR(values []float64) (float64, error) {
 	if len(values) == 0 {
 		return 0, errors.New("values must include the initial investment (usually negative number) and period cash flows")
