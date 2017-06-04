@@ -18,11 +18,13 @@ var npvTestCases = []struct {
 		ok:     false,
 		rate:   0.281,
 		values: nil,
+		want:   0,
 	},
 	{
 		ok:     false,
 		rate:   0.281,
 		values: []float64{42},
+		want:   0,
 	},
 }
 
