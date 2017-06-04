@@ -13,10 +13,22 @@ var npvTestCases = []struct {
 	want   float64
 }{
 	{
-		ok:     false,
+		ok:     true,
 		rate:   0.281,
 		values: []float64{-100, 39, 59, 55, 20},
 		want:   -0.00847859163845488,
+	},
+	{
+		ok:     false,
+		rate:   0.281,
+		values: nil, // []float64{-100, 39, 59, 55, 20},
+		want:   -1,
+	},
+	{
+		ok:     false,
+		rate:   0.281,
+		values: []float64{42},
+		want:   -1,
 	},
 }
 
@@ -24,15 +36,17 @@ func TestNPV(t *testing.T) {
 	for _, tt := range npvTestCases {
 		got, err := NPV(tt.rate, tt.values)
 
-		if !tt.ok && err == nil {
-			t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
-				tt.rate,
-				tt.values,
-				got,
-				err,
-				-1,
-				"<error>",
-			)
+		if !tt.ok {
+			if err == nil {
+				t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
+					tt.rate,
+					tt.values,
+					got,
+					err,
+					-1,
+					"<error>",
+				)
+			}
 			continue
 		}
 
