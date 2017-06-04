@@ -58,3 +58,18 @@ func TestNPV(t *testing.T) {
 		}
 	}
 }
+
+var npvBenchResult float64
+
+func BenchmarkNPV(b *testing.B) {
+	var r float64
+
+	rate := 0.281
+	values := []float64{-100, 39, 59, 55, 20}
+
+	for n := 0; n < b.N; n++ {
+		r, _ = NPV(rate, values)
+	}
+
+	npvBenchResult = r
+}
