@@ -2,7 +2,6 @@ package financial
 
 import (
 	"errors"
-	"fmt"
 	"math"
 )
 
@@ -26,7 +25,7 @@ func NPV(rate float64, values []float64) (float64, error) {
 // IRR return the Internal Rate of Return (IRR).
 func IRR(values []float64) (float64, error) {
 	if len(values) == 0 {
-		return -1, fmt.Errorf("values must include the initial investment (usually negative number) and period cash flows")
+		return -1, errors.New("values must include the initial investment (usually negative number) and period cash flows")
 	}
 	x0 := float64(irrInitialGuess)
 	var x1 float64
@@ -45,5 +44,5 @@ func IRR(values []float64) (float64, error) {
 		}
 		x0 = x1
 	}
-	return -1, fmt.Errorf("could not find irr for the provided values")
+	return -1, errors.New("could not find irr for the provided values")
 }
