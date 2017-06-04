@@ -33,5 +33,6 @@ func IRR(values []float64) (float64, error) {
 		}
 		x0 = x1
 	}
+
 	return 0, errors.New("could not find irr for the provided values")
 }

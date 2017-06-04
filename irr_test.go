@@ -1,19 +1,54 @@
 package financial
 
-import (
-	"fmt"
-	"log"
-	"testing"
-)
+import "testing"
+
+var irrTestCases = []struct {
+	ok     bool
+	values []float64
+	want   float64
+}{
+	{
+		ok:     true,
+		values: []float64{-100, 39, 59, 55, 20},
+		want:   0.2809484211599531,
+	},
+	{
+		ok:     false,
+		values: nil,
+		want:   0,
+	},
+	{
+		ok:     false,
+		values: []float64{42},
+		want:   0,
+	},
+}
 
 func TestIRR(t *testing.T) {
-	irr, err := IRR([]float64{-100, 39, 59, 55, 20})
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-	s := fmt.Sprintf("%.5f", irr)
-	log.Printf("irr: %s", s)
-	if s != "0.28095" {
-		t.Fail()
+	for _, tt := range irrTestCases {
+		got, err := IRR(tt.values)
+
+		if !tt.ok {
+			if err == nil || got != tt.want {
+				t.Errorf("IRR(%v) = %v, %v; want %v, %v",
+					tt.values,
+					got,
+					err,
+					tt.want,
+					"<error>",
+				)
+			}
+			continue
+		}
+
+		if got != tt.want {
+			t.Errorf("IRR(%v) = %v, %v; want %v, %v",
+				tt.values,
+				got,
+				err,
+				tt.want,
+				nil,
+			)
+		}
 	}
 }
