@@ -3,7 +3,7 @@
 package `financial` features common financial functions, and is intended to be a golang version of [numpy's financial functions](https://docs.scipy.org/doc/numpy/reference/routines.financial.html).
 
 ## Supported Functions:
-- npv(rate, values)	Returns the NPV (Net Present Value) of a cash flow series. See [usage example](https://godoc.org/github.com/orcaman/financial#ex-NPV)
+- npv(rate, values)	Returns the NPV (Net Present Value) of a cash flow series. See [usage example](https://godoc.org/github.com/orcaman/financial#ex-NPV).
 - irr(values)	Return the Internal Rate of Return (using newton raphson approximation). See [usage example](https://godoc.org/github.com/orcaman/financial#ex-IRR).
 
 
