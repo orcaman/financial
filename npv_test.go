@@ -1,6 +1,9 @@
 package financial
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var npvTestCases = []struct {
 	ok     bool
@@ -72,4 +75,24 @@ func BenchmarkNPV(b *testing.B) {
 	}
 
 	npvBenchResult = r
+}
+
+func ExampleNPV() {
+	initialInvestment := 100.0
+
+	cashFlowYear1 := 39.0
+	cashFlowYear2 := 59.0
+	cashFlowYear3 := 55.0
+	cashFlowYear4 := 20.0
+
+	discountRate := 0.281
+
+	npv, err := NPV(discountRate, []float64{-initialInvestment, cashFlowYear1, cashFlowYear2, cashFlowYear3, cashFlowYear4})
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fmt.Printf("NPV is: %f", npv)
+	// Output:
+	// NPV is: -0.008479
 }
