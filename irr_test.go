@@ -1,6 +1,9 @@
 package financial
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var irrTestCases = []struct {
 	ok     bool
@@ -65,4 +68,22 @@ func BenchmarkIRR(b *testing.B) {
 	}
 
 	irrBenchResult = r
+}
+
+func ExampleIRR() {
+	initialInvestment := 100.0
+
+	cashFlowYear1 := 39.0
+	cashFlowYear2 := 59.0
+	cashFlowYear3 := 55.0
+	cashFlowYear4 := 20.0
+
+	irr, err := IRR([]float64{-initialInvestment, cashFlowYear1, cashFlowYear2, cashFlowYear3, cashFlowYear4})
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fmt.Printf("IRR is: %f", irr)
+	// Output:
+	// IRR is: 0.280948
 }
