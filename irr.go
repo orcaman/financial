@@ -27,12 +27,10 @@ func IRR(values []float64) (float64, error) {
 			fDerivative += -fk * values[k] / math.Pow(1.0+x0, fk+1.0)
 		}
 		x1 = x0 - fValue/fDerivative
-
 		if math.Abs(x1-x0) <= irrAccuracy {
 			return x1, nil
 		}
 		x0 = x1
 	}
-
 	return 0, errors.New("could not find irr for the provided values")
 }
