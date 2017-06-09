@@ -1,6 +1,6 @@
 # financial [![CircleCI](https://circleci.com/gh/orcaman/financial.svg?style=svg)](https://circleci.com/gh/orcaman/financial) [![GoDoc](https://godoc.org/github.com/orcaman/financial?status.svg)](https://godoc.org/github.com/orcaman/financial)
 
-![Golang Financial Logo](https://user-images.githubusercontent.com/4884073/26978301-b620e944-4d33-11e7-9879-2b9b3a6aa444.png?raw=true "Golang Financial Logo")
+![Golang Financial Logo](https://user-images.githubusercontent.com/4884073/26978301-b620e944-4d33-11e7-9879-2b9b3a6aa444.png?raw=true =500px "Golang Financial Logo")
 
 package `financial` features common financial functions, and is intended to be a golang version of [numpy's financial functions](https://docs.scipy.org/doc/numpy/reference/routines.financial.html).
 
