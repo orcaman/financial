@@ -7,25 +7,25 @@ import (
 
 var npvTestCases = []struct {
 	ok     bool
-	rate   float64
+	r      float64
 	values []float64
 	want   float64
 }{
 	{
 		ok:     true,
-		rate:   0.281,
+		r:      0.281,
 		values: []float64{-100, 39, 59, 55, 20},
 		want:   -0.00847859163845488,
 	},
 	{
 		ok:     false,
-		rate:   0.281,
+		r:      0.281,
 		values: nil,
 		want:   0,
 	},
 	{
 		ok:     false,
-		rate:   0.281,
+		r:      0.281,
 		values: []float64{42},
 		want:   0,
 	},
@@ -33,12 +33,12 @@ var npvTestCases = []struct {
 
 func TestNPV(t *testing.T) {
 	for _, tt := range npvTestCases {
-		got, err := NPV(tt.rate, tt.values)
+		got, err := NPV(tt.r, tt.values)
 
 		if !tt.ok {
 			if err == nil || got != tt.want {
 				t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
-					tt.rate,
+					tt.r,
 					tt.values,
 					got,
 					err,
@@ -51,7 +51,7 @@ func TestNPV(t *testing.T) {
 
 		if got != tt.want {
 			t.Errorf("NPV(%v, %v) = %v, %v; want %v, %v",
-				tt.rate,
+				tt.r,
 				tt.values,
 				got,
 				err,
@@ -65,16 +65,16 @@ func TestNPV(t *testing.T) {
 var npvBenchResult float64
 
 func BenchmarkNPV(b *testing.B) {
-	var r float64
+	var res float64
 
-	rate := 0.281
+	r := 0.281
 	values := []float64{-100, 39, 59, 55, 20}
 
 	for n := 0; n < b.N; n++ {
-		r, _ = NPV(rate, values)
+		res, _ = NPV(r, values)
 	}
 
-	npvBenchResult = r
+	npvBenchResult = res
 }
 
 func ExampleNPV() {
